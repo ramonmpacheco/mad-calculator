@@ -8,25 +8,44 @@ class Button extends StatelessWidget {
   final String text;
   final doubleSpace;
   final Color color;
+  final void Function(String) callBack;
 
-  const Button(
-      {Key? key,
-      required this.text,
-      this.doubleSpace = false,
-      this.color = DEFAULT})
-      : super(key: key);
+  const Button({
+    Key? key,
+    required this.text,
+    this.doubleSpace = false,
+    this.color = DEFAULT,
+    required this.callBack,
+  }) : super(key: key);
+
+  const Button.doubleSpace({
+    Key? key,
+    required this.text,
+    this.doubleSpace = true,
+    this.color = DEFAULT,
+    required this.callBack,
+  }) : super(key: key);
+
+  const Button.operation({
+    Key? key,
+    required this.text,
+    this.doubleSpace = false,
+    this.color = OPERATION,
+    required this.callBack,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       flex: doubleSpace ? 2 : 1,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => callBack(text),
         child: Text(
           text,
           style: TextStyle(
             color: Colors.white,
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w400,
+            fontSize: 24,
           ),
         ),
         style: ElevatedButton.styleFrom(primary: this.color),
