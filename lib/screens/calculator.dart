@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mad_calculator/components/display.dart';
 import 'package:mad_calculator/components/keyboard.dart';
 import 'package:mad_calculator/models/engine.dart';
@@ -21,6 +22,8 @@ class _CalculatorState extends State<Calculator> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return MaterialApp(
       home: Column(
         children: [
